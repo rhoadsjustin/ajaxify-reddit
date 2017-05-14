@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" href="css/global.css" media="screen" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
@@ -28,38 +29,82 @@
       </button>
       <a class="navbar-brand" href="#rising" id='rising'>rising</a>
       <a class="navbar-brand" href="#NBA" id='nba'>nba</a>
-      <a class="navbar-brand" href="" id='pics'>pics</a>
-      <a class="navbar-brand" href="#">gilded</a>
-      <a class="navbar-brand" href="#">wiki</a>
-      <a class="navbar-brand" href="#">promoted</a>
+      <a class="navbar-brand" href="#pics" id='pics'>pics</a>
+      <a class="navbar-brand" href="#gaming" id='gaming'>gaming</a>
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search for Subreddits">
+        </div>
+        <button type="submit" class="btn btn-default pull-right">Submit</button>
+      </form>
     </div>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
       </nav>
     </div>
   </div>
 </nav>
     <div class='container-fluid'>
       <div class='row'>
-    <div class='pull-left clearfix' id="sidebar">
-    </div>
-    <div id="main">
+    <div class="clearfix" id="main">
       <div class="col-md-6 col-md-offset-3" id="homepage">
         <img class="center-block" src="default.jpg" alt="Reddit Logo">
         <h1 class='display-1 text-center'>Welcome to Ajaxify Reddit</h1>
         <p class="text-muted text-center">let's internet together</p>
-      </div>
-
-
     </div>
   </div>
+  <!-- Button trigger modal -->
+  <div id="login">
+       <button type="button" class="btn btn-default btn-lg center-block" data-show="modal" data-target="#myModal">
+          login to your reddit
+        </button>
+
+      <!--  Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Welcome to Ajaxify Reddit</h4>
+              </div>
+              <div class="modal-body">
+                Reddit bridges communities and individuals with ideas, the latest digital trends, and breaking news (...okay, and maybe cats). Our mission is to help people discover places where they can be their true selves, and empower our community to flourish.
+              </div>
+              <div class="modal-footer">
+                <span class="input-group-addon" id="sizing-addon2">
+                  <span class="glyphicon glyphicon-user"></span>
+                  Enter Username below
+                </span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+                <span class="input-group-addon" id="sizing-addon2">
+                  <span class="glyphicon glyphicon-info-sign"></span>
+                  Enter Password Below
+                </span>
+                <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-md-4 pull-right clearfix hidden" id="sidebar">
+      <div class="thumbnail">
+        <h5>log in to reddit</h5>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">
+            <span class="glyphicon glyphicon-user"></span>
+          </span>
+          <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon" id="sizing-addon2">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </span>
+          <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
   </body>

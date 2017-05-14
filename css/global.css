@@ -5,29 +5,36 @@ nav ul li {
 }
 
 .card {
-  border: 2px solid #326ada;
+  border: 1px solid #326ada;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-.card:hover {
-  background: grey;
+.thumbnail:hover {
+  filter: drop-shadow(16px 16px 5px grey);
 }
 
 body {
-  padding: 70px;
-  background: #F5F8FA;
+  padding: 100px;
+  background: url('http://i.imgur.com/T5r4fWd.gif') cover;
 }
 
 .card-img-top {
   width: 25rem;
 }
 
-.card-img-top:hover{
-  filter: blur(5px);
-}
 
 .card-title {
-  font-size: 1.5em;
+  font-size: 1em;
   color: #14171A;
   text-decoration: none;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+
+#sidebar {
+  position: relative;
+  top: 10px;
+
 }
