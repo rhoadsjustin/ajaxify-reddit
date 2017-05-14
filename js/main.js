@@ -1,11 +1,14 @@
 /* GLOBAL VARIABLES UP HERE */
 var frontPage = 'https://www.reddit.com/.json';
-var nba = '<p class='
+var searchQuery = $('form').serialize();
 // function Template ()
 
 
 $(document).ready(function(){
 /* FUNCTION EXECUTION HERE */
+
+
+
 function homeReddit() {
   $.ajax({
     method: "GET",
@@ -14,7 +17,8 @@ function homeReddit() {
     error: onError
   })
 }
-$('.btn').on('click', function(event){
+
+$('#frontpagebtn').on('click', function(event){
   event.preventDefault();
   $('#myModal').modal();
 })
@@ -27,14 +31,15 @@ function clearScreen() {
   $('#login').addClass('hidden');
 }
 
-  $('form').on('submit', function(event){
+  $('#searchButton').on('click', function(event){
+    console.log(searchQuery);
     event.preventDefault();
     clearScreen();
     $.ajax({
       method: 'GET',
-      url: 'https://www.reddit.com/search',
-      data: $('form').serialize(),
-      success: onSuccess,
+      url: `https://www.reddit.com/subreddits/search.json?q=subreddit%3A${searchQuery}&restrict_sr=&sort=relevance&t=all`,
+      data: searchQuery,
+      success: searchSuccess,
       error: onError
     })
   })
@@ -76,7 +81,7 @@ function clearScreen() {
     $.ajax({
       method: 'GET',
       url: 'https://www.reddit.com/r/pics/.json',
-      success: picSuccess,
+      success: onSuccess,
       error: onError
     })
   })
@@ -92,15 +97,19 @@ function clearScreen() {
     })
   })
 
+
   function onError() {
     alert('This is Broken. Reddit is Broken.');
   }
 
-
-  function onSuccess(json) {
-    $('#main').empty();
+  function searchSuccess(json){
     var children = json.data.children;
-    for (var i = 0; i < children.length; i++) {
+    for (var i = 0; i < json.data.children.length; i++) {
+
+      var then = children[i].data.created;
+      var date = new Date(then * 1000);
+
+
       var template = '<div class="row cleafix">';
       template += '<div class="col-md-6">';
       template += `<div class="thumbnail" id="${json.data.children[i].data.id}" style="width: 50rem;">`;
@@ -122,7 +131,48 @@ function clearScreen() {
       template += `<button type="button" class="btn btn-default btn-lg">
                    <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Down-Vote
                   </button>`
-      template += '<button class="btn btn-primary pull-right clearfix">read more</button>';
+      template += `<p class="text-muted">${date}`;
+      template += '<button class="btn btn-primary pull-right clearfix">read more</button></p>';
+      template += '</div>';
+      template += '</div>';
+      template += '</div>';
+      template += '</div>';
+      $('#main').append(template);
+    }
+    }
+
+
+  function onSuccess(json) {
+    $('#main').empty();
+    var children = json.data.children;
+    for (var i = 0; i < children.length; i++) {
+      var then = children[i].data.created;
+      var date = new Date(then * 1000);
+
+
+      var template = '<div class="row cleafix">';
+      template += '<div class="col-md-6">';
+      template += `<div class="thumbnail" id="${json.data.children[i].data.id}" style="width: 50rem;">`;
+      template += `<a href=${children[i].data.url}</a>`;
+        if(children[i].data.preview !== undefined){
+          template += `<img class="card-img-top center-block" src='${json.data.children[i].data.preview.images[0].resolutions[0].url}' alt="Card image cap">`;
+        } else if(children[i].data.thumbnail !== undefined){
+          template += `<img class="card-img-top center-block" src='${json.data.children[i].data.thumbnail}' alt="Card image cap">`
+        } else if(children[i].data.thumbnail === 'self' || children[i].data.thumbnail === 'default' )
+          template += `<img class="card-img-top center-block" src="https://i.redditmedia.com/4xFezp8qybWigpg6WN5gkAuI39AIPdv4jdHijFU4_ns.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=19f81c159c3852ca87417e2d2edde0b0" alt="Card image cap">`;
+          else {
+          template += `<img class="card-img-top center-block" src="https://i.redditmedia.com/4xFezp8qybWigpg6WN5gkAuI39AIPdv4jdHijFU4_ns.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=19f81c159c3852ca87417e2d2edde0b0" alt="Card image cap">`;
+        }
+      template += '<div class="card-block">';
+      template += `<h6 class="card-title text-muted text-center">${children[i].data.title}</h6>`;
+      template += `<button type="button" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Up-Vote
+                  </button>`
+      template += `<button type="button" class="btn btn-default btn-lg">
+                   <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Down-Vote
+                  </button>`
+      template += `<p class="text-muted">${date}`;
+      template += '<button class="btn btn-primary pull-right clearfix">read more</button></p>';
       template += '</div>';
       template += '</div>';
       template += '</div>';
@@ -130,9 +180,14 @@ function clearScreen() {
       $('#main').append(template);
     }
   }
+
   function nbaSuccess(json) {
     var children = json.data.children;
     for (var j = 0; j < children.length; j++) {
+
+      var then = children[j].data.created;
+      var date = new Date(then * 1000);
+
       var template = '<div class="row">';
       template += '<div class="col-md-6">';
       template += `<div class="thumbnail" id="${json.data.children[j].data.id}" style="width: 50rem;">`;
@@ -146,7 +201,8 @@ function clearScreen() {
       template += `<button type="button" class="btn btn-default btn-lg">
                    <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Down-Vote
                   </button>`
-      template += '<button class="btn btn-primary pull-right clearfix">read more</button>';
+      template += `<p class="text-muted">${date}`;
+      template += '<button class="btn btn-primary pull-right clearfix">read more</button></p>';
       template += '</div>';
       template += '</div>';
       template += '</div>';
@@ -155,36 +211,6 @@ function clearScreen() {
     }
   }
 
-  function picSuccess(json) {
-    $('#main').empty();
-    var children = json.data.children;
-    for (var i = 0; i < children.length; i++) {
-      var template = '<div class="row">';
-      template += '<div class="col-md-6">';
-      template += `<div class="thumbnail" id="${json.data.children[i].data.id}" style="width: 50rem;">`;
-      template += `<a href=${children[i].data.url}</a>`;
-        if(children[i].data.preview !== undefined){
-          template += `<img class="card-img-top center-block" src='${json.data.children[i].data.preview.images[0].resolutions[0].url}' alt="Card image cap">`;
-        } else if(children[i].data.thumbnail !== undefined){
-          template += `<img class="card-img-top center-block" src='${json.data.children[i].data.thumbnail}' alt="Card image cap">`
-        } else {
-          template += `<img class="card-img-top center-block" src="https://i.redditmedia.com/4xFezp8qybWigpg6WN5gkAuI39AIPdv4jdHijFU4_ns.jpg?fit=crop&amp;crop=faces%2Centropy&amp;arh=2&amp;w=108&amp;s=19f81c159c3852ca87417e2d2edde0b0" alt="Card image cap">`;
-        }
-      template += '<div class="card-block">';
-      template += `<h4 class="card-title text-muted text-center">${children[i].data.title}</h4>`;
-      template += `<button type="button" class="btn btn-default btn-lg">
-                  <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Up-Vote
-                  </button>`
-      template += `<button type="button" class="btn btn-default btn-lg">
-                   <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span> Down-Vote
-                  </button>`
-      template += '</div>';
-      template += '</div>';
-      template += '</div>';
-      template += '</div>';
-      $('#main').append(template);
-    }
-  }
 
 
 
