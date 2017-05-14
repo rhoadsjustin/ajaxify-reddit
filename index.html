@@ -6,31 +6,61 @@
     <title>Ajaxify Reddit</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" />
     <link rel="stylesheet" href="css/global.css" media="screen" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
 
-  <div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
     <div class="row">
       <div class="col-md-4">
-        <h1>Ajaxify Reddit</h1>
+        <a class="navbar-brand" href=""id='home'>Ajaxify Reddit</a></h1>
       </div>
       <nav class="col-md-8">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#rising" id='rising'>rising</a>
+      <a class="navbar-brand" href="#NBA" id='nba'>nba</a>
+      <a class="navbar-brand" href="" id='pics'>pics</a>
+      <a class="navbar-brand" href="#">gilded</a>
+      <a class="navbar-brand" href="#">wiki</a>
+      <a class="navbar-brand" href="#">promoted</a>
+    </div>
         <ul>
-          <li><a href="#">new</a></li>
-          <li><a href="#">rising</a></li>
-          <li><a href="#">controversial</a></li>
-          <li><a href="#">top</a></li>
-          <li><a href="#">gilded</a></li>
-          <li><a href="#">wiki</a></li>
-          <li><a href="#">promoted</a></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
         </ul>
       </nav>
     </div>
-
-    <div id="main"></div>
   </div>
+</nav>
+    <div class='container-fluid'>
+      <div class='row'>
+    <div class='pull-left clearfix' id="sidebar">
+    </div>
+    <div id="main">
+      <div class="col-md-6 col-md-offset-3" id="homepage">
+        <img class="center-block" src="default.jpg" alt="Reddit Logo">
+        <h1 class='display-1 text-center'>Welcome to Ajaxify Reddit</h1>
+        <p class="text-muted text-center">let's internet together</p>
+      </div>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="js/main.js" charset="utf-8"></script>
+
+    </div>
+  </div>
+</div>
+
   </body>
 </html>

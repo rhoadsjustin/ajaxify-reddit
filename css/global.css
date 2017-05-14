@@ -3,3 +3,31 @@ nav ul li {
   list-style-type: none;
   margin-right: 25px;
 }
+
+.card {
+  border: 2px solid #326ada;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.card:hover {
+  background: grey;
+}
+
+body {
+  padding: 70px;
+  background: #F5F8FA;
+}
+
+.card-img-top {
+  width: 25rem;
+}
+
+.card-img-top:hover{
+  filter: blur(5px);
+}
+
+.card-title {
+  font-size: 1.5em;
+  color: #14171A;
+  text-decoration: none;
+}
